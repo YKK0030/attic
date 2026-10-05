@@ -32,3 +32,11 @@ build/
 
 # Local Docker data
 docker/data/
+
+# Local planning scratch (public roadmap lives in docs/phases/)
+/TODO.md
+/TEST_CASES.md
+/PHASE_B_RESEARCH.md
+/PHASE_C_PLAN.md
+/AUDIT_LOG_*.md
+/attic-python-build-plan.md

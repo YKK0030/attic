@@ -251,4 +251,4 @@ docs/                     Integration and security guides
 - Store durable facts and decisions, not every intermediate thought.
 - Keep `source`, tags, and provenance useful enough to inspect later.
 
-Roadmap details: [ATTIC_REQUIREMENTS_PLAN.md](ATTIC_REQUIREMENTS_PLAN.md).
+Roadmap and source decisions: [docs/phases/README.md](docs/phases/README.md).
