@@ -2,6 +2,11 @@
 
 Attic is a local-first memory service for AI agents.
 
+> **Development status:** Attic is still under active development and is not
+> production-ready. The offline regression suite passes, but live deployment,
+> provider, and integration paths may still need testing in your environment.
+> Expect API and configuration changes while the project stabilizes.
+
 It stores durable facts, notes, documents, decisions, conversations, and
 preferences. Agents can use it through REST, MCP, Python, JavaScript, or the
 included CLI.
