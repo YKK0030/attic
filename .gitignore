@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local configuration and secrets
+.env
+.env.*
+
+# Local databases and generated indexes
+*.db
+*.sqlite
+*.sqlite3
+attic.db
+
+# Logs and local output
+*.log
+dist/
+build/
+*.egg-info/
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local Docker data
+docker/data/

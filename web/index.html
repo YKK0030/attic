@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Attic / memory console</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/app.css"></head>
+<body>
+  <main class="shell">
+    <header><div><p class="eyebrow">ATTIC / LOCAL MEMORY</p><h1>Keep the useful things.</h1><p class="sub">Search notes semantically. Ask grounded questions. Keep data on your machine.</p></div><span id="health" class="status">checking</span></header>
+    <section class="command"><label for="query">Search your memory</label><div class="search"><input id="query" placeholder="What did I write about retrieval?" autofocus><input id="namespace" value="default" aria-label="Namespace"><button id="search">Recall</button><button id="ask" class="quiet">Ask</button></div><p class="hint">Enter searches. Ask sends matching context to Ollama.</p></section>
+    <section class="columns"><div><div class="section-head"><span>RESULTS</span><span id="count">0</span></div><div id="results" class="results"><div class="empty">Your recalled notes appear here.</div></div></div><aside><div class="section-head"><span>RECENT CONNECTIONS</span><button id="refresh">refresh</button></div><div id="connections" class="connections"><div class="empty">Shared ideas appear here.</div></div></aside></section>
+  </main><script src="/app.js"></script>
+</body></html>

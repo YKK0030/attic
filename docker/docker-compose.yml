@@ -1,0 +1,30 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant-data:/qdrant/storage
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.api
+    ports:
+      - "4000:4000"
+    environment:
+      ATTIC_DB: /data/attic.db
+      ATTIC_API_KEY: ${ATTIC_API_KEY:-dev-key}
+      ATTIC_TENANT_KEYS: ${ATTIC_TENANT_KEYS:-}
+      ATTIC_MAX_REQUEST_BYTES: ${ATTIC_MAX_REQUEST_BYTES:-1048576}
+      ATTIC_RATE_LIMIT: ${ATTIC_RATE_LIMIT:-120}
+      ATTIC_RATE_WINDOW_SECONDS: ${ATTIC_RATE_WINDOW_SECONDS:-60}
+      QDRANT_URL: http://qdrant:6333
+      OLLAMA_URL: http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - attic-data:/data
+
+volumes:
+  attic-data:
+  qdrant-data:
