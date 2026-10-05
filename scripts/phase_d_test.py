@@ -9,7 +9,7 @@ os.environ["ATTIC_DB"] = os.path.join(tempfile.gettempdir(), f"attic-phase-d-{uu
 from attic_api import config, db
 config.DB_PATH = os.environ["ATTIC_DB"]
 db.DB_PATH = config.DB_PATH
-from attic_api.core import audit, get_memory, recall, remember
+from attic_api.core import audit, get_memory, recent_activity, recall, remember
 
 db.init_db()
 config.CURRENT_TENANT.set("tenant-a")
@@ -28,4 +28,5 @@ assert audit(a["id"]) == []
 config.CURRENT_TENANT.set("tenant-a")
 assert recall("same fact", 5, "shared")
 assert audit(a["id"])
+assert recent_activity(10)
 print("phase D ok")

@@ -311,6 +311,22 @@ def audit(document_id: str) -> list[dict]:
         return [dict(row) for row in db.execute("SELECT * FROM audit_log WHERE tenant_id=? AND memory_id=? ORDER BY created_at", (tenant_id, document_id))]
 
 
+def recent_activity(limit: int = 50) -> list[dict]:
+    tenant_id = _tenant()
+    limit = max(1, min(limit, 200))
+    with connect() as db:
+        rows = db.execute(
+            "SELECT id, memory_id, action, actor, metadata, created_at FROM audit_log WHERE tenant_id=? ORDER BY created_at DESC, rowid DESC LIMIT ?",
+            (tenant_id, limit),
+        ).fetchall()
+    result = []
+    for row in rows:
+        item = dict(row)
+        item["metadata"] = json.loads(item["metadata"] or "{}")
+        result.append(item)
+    return result
+
+
 def export_memories(namespace: str | None = None) -> dict:
     tenant_id = _tenant()
     with connect() as db:

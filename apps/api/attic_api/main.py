@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
 
 from .config import API_KEY, CURRENT_TENANT, MAX_REQUEST_BYTES, RATE_LIMIT, RATE_WINDOW_SECONDS, RAG_MIN_SCORE, tenant_for_key
-from .core import audit, build_context, export_memories, forget, get_memory, import_memories, recall, remember, reindex, set_status, supersede, surface, update_memory
+from .core import audit, build_context, export_memories, forget, get_memory, import_memories, recent_activity, recall, remember, reindex, set_status, supersede, surface, update_memory
 from .db import connect, init_db
 from .jobs import start as start_jobs
 from .jobs import stop as stop_jobs
@@ -175,6 +175,12 @@ def health(x_attic_key: str | None = Header(default=None)):
             for tag in json.loads(row[0]):
                 tags[tag] = tags.get(tag, 0) + 1
     return {"ok": True, "memories": count, "namespaces": namespaces, "top_tags": sorted(tags, key=tags.get, reverse=True)[:10]}
+
+
+@router.get("/activity")
+def activity(limit: int = Query(default=50, ge=1, le=200), x_attic_key: str | None = Header(default=None)):
+    check_key(x_attic_key)
+    return recent_activity(limit)
 
 
 @router.post("/memory")
