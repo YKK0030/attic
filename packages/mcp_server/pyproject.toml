@@ -2,7 +2,7 @@
 name = "attic-mcp"
 version = "0.1.0"
 requires-python = ">=3.11"
-dependencies = ["mcp"]
+dependencies = ["mcp>=1.9.2,<2"]
 
 [project.scripts]
 attic-mcp = "attic_mcp.server:main"
