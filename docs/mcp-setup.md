@@ -23,4 +23,16 @@ Streamable HTTP. HTTP transport requires the bearer `ATTIC_MCP_API_KEY`; the
 server uses the separate `ATTIC_API_KEY` for its backend connection. Every
 memory tool is limited to `ATTIC_NAMESPACE`.
 
+To connect Aria, set the matching values in Aria's `.env`:
+
+```env
+ATTIC_ENABLED=true
+ATTIC_MCP_URL=http://localhost:4100/mcp
+ATTIC_MCP_API_KEY=replace-me
+```
+
+Set `ATTIC_ENABLED=false` to unplug Attic. Aria then continues with Redis and
+SQLite without connecting to this server. The complete Aria startup flow is in
+`/home/yadnit/personal_projects/Aria/docs/ATTIC_MCP_README.md`.
+
 For Claude Desktop, point the command at the installed Python executable and set `ATTIC_URL` and `ATTIC_API_KEY` in its MCP server environment.
